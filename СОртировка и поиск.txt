@@ -1,0 +1,58 @@
+import random
+ 
+array1 = list({random.randint(-50, 50) for i in range(10)})
+array2 = list({random.randint(-50, 50) for j in range(10)})
+array3 = list({random.randint(-50, 50) for m in range(10)})
+array4 = list({random.randint(-50, 50) for k in range(10)})
+ 
+array5 = (array1 + array2 + array3 + array4)
+ 
+# Бинарный поиск в списке по возрастанию
+def binary_search_asc(arr, target):
+    left, right = 0, len(arr) - 1
+ 
+    while left <= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            print(f"Введённое значение {target} находится в списке под индексом {mid}")
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+ 
+    print(f"Элемент {target} не найден!")
+ 
+# Бинарный поиск в списке по убыванию
+def binary_search_desc(arr, target):
+    left, right = 0, len(arr) - 1
+ 
+    while left <= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            print(f"Введённое значение {target} находится в списке под индексом {mid}")
+        elif arr[mid] > target:
+            left = mid + 1
+        else:
+            right = mid - 1
+ 
+    print(f"Элемент {target} не найден!")
+ 
+# print(array5)
+ 
+while True:
+    try:
+        choice = input("Как отсортировать? (\"a\" - /по возрастанию, \"b\" - по убыванию): ")
+        if choice == "a":
+            array5.sort()
+            print(array5)
+            binary_search_asc(array5, int(input("Введите элемент для бинарного поиска: ")))
+            break
+        elif choice == "b":
+            array5.sort(reverse=True)
+            print(array5)
+            binary_search_desc(array5, int(input("Введите элемент для бинарного поиска: ")))
+            break
+        else:
+            raise ValueError
+    except ValueError:
+         print("Неправильный ввод!")
